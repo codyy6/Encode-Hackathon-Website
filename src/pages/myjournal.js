@@ -1,5 +1,6 @@
 import '../App.css';
-import backgroundImg from '../bg.png'
+import { Link } from 'react-router-dom';
+import backgroundImg from '../bg.png';
 import { useState } from 'react';
 
 export default function MyJournal(){
@@ -39,8 +40,14 @@ export default function MyJournal(){
             {showDropdown && (
                 <div className="fixed top-20 right-10 mx-4 my-4 bg-gray-300 rounded-md shadow-lg">
                     <ul>
-                        <li className="px-4 py-2"> Profile </li>
-                        <li className="px-4 py-2"> Sign Out</li>
+                        <li className="px-4 py-2"> 
+                            <button> Profile </button>
+                        </li>
+                        <Link to="/">
+                            <li className="px-4 py-2"> 
+                                <button> Sign Out </button>
+                            </li>
+                        </Link>
                     </ul>
                 </div>
             )}
