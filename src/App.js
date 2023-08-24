@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from './pages/main';
 import MyJournal from './pages/myjournal';
 import UserProfile from './pages/userprofile';
