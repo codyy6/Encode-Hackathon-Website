@@ -1,10 +1,71 @@
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import backgroundImg from '../bg.png'
+import { BrowserProvider } from 'ethers';
+import { SiweMessage } from 'siwe';
 
+const domain = window.location.host;
+const origin = window.location.origin;
+const provider = new BrowserProvider(window.ethereum);
 
+let address;
 
-function main() {
+const BACKEND_ADDR = "http://localhost:3000";
+
+async function createSiweMessage(address, statement) {
+  const res = await fetch(`${BACKEND_ADDR}/nonce`, {
+      credentials: 'include',
+  });
+  const message = new SiweMessage({
+      domain,
+      address,
+      statement,
+      uri: origin,
+      version: '1',
+      chainId: '1',
+      nonce: await res.text()
+  });
+  return message.prepareMessage();
+}
+
+function Main() {
+  const navigate = useNavigate(); // Access the useNavigate hook within the component
+
+  async function SignInWithEthereum() {
+    const signer = await provider.getSigner();
+
+    address = await signer.getAddress()
+    const message = await createSiweMessage(
+      address,
+      'Sign in with Ethereum to the app.'
+    );
+
+    try {
+      const signature = await signer.signMessage(message);
+
+      // Handle the successful signature
+      const res = await fetch(`${BACKEND_ADDR}/verify`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message, signature }),
+        credentials: 'include'
+      });
+
+      if (!res.ok) {
+        console.error(`Failed in getInformation:`);
+        // Handle the error response from the server
+      } else {
+        navigate('/myjournal') // Use the navigate function for redirection
+      }
+      console.log(await res.text());
+    } catch (error) {
+      console.error('Signature request was rejected or failed:', error);
+    }
+  }
+
   return (
     <div className="bg-cover bg-center h-screen flex items-center justify-center" style={{backgroundImage: `url(${backgroundImg})`}}>
       <div className="text-center">
@@ -13,12 +74,10 @@ function main() {
         </div>
         <h1 className="text-5xl font-bold text-gray-500"> Journify </h1>
         <p className="text-gray-500 text-3xl py-6"> "Empower your decentralized journaling journey today!" </p>
-        <Link to="/myjournal">
-            <button className="bg-blue-400 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-4 rounded"> Connect Wallet </button>
-        </Link>
+        <button className="bg-blue-400 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-4 rounded" onClick={SignInWithEthereum}> Connect Wallet </button>
       </div>
     </div>
   );
 }
 
-export default main;
+export default Main;
