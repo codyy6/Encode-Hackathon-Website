@@ -1,9 +1,45 @@
 import React from "react";
 import backgroundImg from '../bg.png'
 import { Link } from 'react-router-dom';
-
+import { useState, useEffect } from 'react'; // Import useState and useEffect
+import { BrowserProvider } from 'ethers';
 
 export default function UserProfile() {
+
+    const [ensName, setEnsName] = useState(""); // State to hold the ENS name
+    const [address, setAddress] = useState("");
+
+    useEffect(() => {
+        // Perform this effect when the component mounts
+        getInformation();
+    }, []);
+
+    async function getInformation() {
+        const res = await fetch(`http://localhost:3000/personal_information`, {
+            credentials: 'include',
+        });
+
+        if (!res.ok) {
+            console.error(`Failed in getInformation: ${res.statusText}`);
+            return;
+        }
+
+        let result = await res.text();
+        console.log(result);
+        const address = result.split(" ")[result.split(" ").length - 1];
+        setAddress(address)
+
+        // Now that you have the address, you can call displayENSProfile
+        displayENSProfile(address);
+    }
+
+    async function displayENSProfile(address) {
+        const provider = new BrowserProvider(window.ethereum);
+        const ensName = await provider.lookupAddress(address);
+        console.log(ensName);
+        setEnsName(ensName); // Update the state with the ENS name
+    }
+
     return (
         <div className="bg-cover bg-center min-h-screen flex flex-col items-center" style={{backgroundImage: `url(${backgroundImg})`}}>
             <div className="absolute top-4 left-10 py-4">
@@ -22,11 +58,11 @@ export default function UserProfile() {
                 </div>
                 <div className="text-gray-700">
                     <p className="font-semibold">Ethereum Address:</p>
-                    <p>Your Ethereum Address</p>
+                    <p>{address}</p>
                 </div>
                 <div className="text-gray-700">
                     <p className="font-semibold">ENS:</p>
-                    <p>Your ENS</p>
+                    <p>{ensName || "N/A"}</p>
                 </div>
                 <div className="text-gray-700">
                     <p className="font-semibold">Wallet Balance:</p>

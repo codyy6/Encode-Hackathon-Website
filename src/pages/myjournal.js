@@ -1,7 +1,7 @@
 import '../App.css';
 import { Link } from 'react-router-dom';
 import backgroundImg from '../bg.png';
-import { useState, useEffect } from 'react'; // Import useEffect
+import React, { useState, useEffect } from 'react'; // Import useState and useEffect
 import { BrowserProvider } from 'ethers';
 
 export default function MyJournal() {
