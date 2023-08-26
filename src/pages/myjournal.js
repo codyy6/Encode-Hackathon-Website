@@ -1,12 +1,14 @@
 import '../App.css';
 import { Link } from 'react-router-dom';
 import backgroundImg from '../bg.png';
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; // Import useEffect
+import { BrowserProvider } from 'ethers';
 
-export default function MyJournal(){
-
+export default function MyJournal() {
     const [showNewJournalBlock, setShowNewJournalBlock] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
+    const [ensName, setEnsName] = useState(""); // State to hold the ENS name
+    const [address, setAddress] = useState("");
 
     const toggleNewJournalBlock = () => {
         setShowNewJournalBlock(!showNewJournalBlock);
@@ -16,10 +18,41 @@ export default function MyJournal(){
         setShowDropdown(!showDropdown);
     };
 
+    useEffect(() => {
+        // Perform this effect when the component mounts
+        getInformation();
+    }, []);
+
+    async function getInformation() {
+        const res = await fetch(`http://localhost:3000/personal_information`, {
+            credentials: 'include',
+        });
+
+        if (!res.ok) {
+            console.error(`Failed in getInformation: ${res.statusText}`);
+            return;
+        }
+
+        let result = await res.text();
+        console.log(result);
+        const address = result.split(" ")[result.split(" ").length - 1];
+        setAddress(address)
+
+        // Now that you have the address, you can call displayENSProfile
+        displayENSProfile(address);
+    }
+
+    async function displayENSProfile(address) {
+        const provider = new BrowserProvider(window.ethereum);
+        const ensName = await provider.lookupAddress(address);
+        console.log(ensName);
+        setEnsName(ensName); // Update the state with the ENS name
+    }
+
     return (
         <div className="bg-cover bg-center min-h-screen" style={{backgroundImage: `url(${backgroundImg})`}}>
             <div className="flex items-center justify-between mx-10 py-4">
-                <h1 className="text-gray-600 text-3xl py-6"> My Journal </h1>
+            <h1 className="text-gray-600 text-3xl py-6"> {ensName || address}'s journal </h1>
                 <div className="flex">
                     <button className="bg-gray-200 bg-opacity-50 text-gray-800 text-2xl font-normal py-2 px-4 rounded-md" onClick={toggleNewJournalBlock}>
                     + New Journal
@@ -55,8 +88,4 @@ export default function MyJournal(){
             )}
         </div>
     );
-    
 }
-
-
-
