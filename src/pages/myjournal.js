@@ -40,9 +40,11 @@ export default function MyJournal(){
             {showDropdown && (
                 <div className="fixed top-20 right-10 mx-4 my-4 bg-gray-300 rounded-md shadow-lg">
                     <ul>
-                        <li className="px-4 py-2"> 
-                            <button> Profile </button>
-                        </li>
+                        <Link to="/userprofile">
+                            <li className="px-4 py-2"> 
+                                <button> Profile </button>
+                            </li>
+                        </Link>
                         <Link to="/">
                             <li className="px-4 py-2"> 
                                 <button> Sign Out </button>
