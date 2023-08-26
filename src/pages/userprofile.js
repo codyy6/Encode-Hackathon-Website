@@ -50,7 +50,7 @@ export default function UserProfile() {
                 </Link>
             </div>
             <h1 className="text-gray-600 text-3xl py-6"> User Profile </h1>
-            <div className="mt-4 p-6 bg-white border border-gray-300 rounded-md shadow-md w-96">
+            <div className="mt-4 p-6 bg-white border border-gray-300 rounded-md shadow-md w-2/5">
                 <div className="flex flex-col space-y-2">
                 <div className="text-gray-700">
                     <p className="font-semibold">Name:</p>

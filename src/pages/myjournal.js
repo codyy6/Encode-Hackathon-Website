@@ -70,6 +70,10 @@ export default function MyJournal() {
                     <button className="mt-2 bg-blue-400 hover:bg-blue-700 text-white text-lg font-normal py-2 px-4 rounded-md"> Save</button>
                 </div>
             )}
+            <div className="ml-10 mr-32 mt-4 p-4 border border-gray-300 rounded-md">
+                <h2 className="text-lg font-semibold"> Journal Title </h2>
+                <p className="mt-2"> Journal Entry </p>
+            </div>
             {showDropdown && (
                 <div className="fixed top-20 right-10 mx-4 my-4 bg-gray-300 rounded-md shadow-lg">
                     <ul>
