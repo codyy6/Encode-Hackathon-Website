@@ -15,7 +15,6 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/myjournal" element={<MyJournal />} />
         <Route path="/userprofile" element={<UserProfile />} /> 
-        <Route path="/journal" element={<Journal />} />
       </Routes>
     </Router>
   );
