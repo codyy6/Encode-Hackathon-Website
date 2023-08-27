@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from './pages/main';
 import MyJournal from './pages/myjournal';
 import UserProfile from './pages/userprofile';
-import Journal from './pages/journal';
-
 
 
 function App() {
