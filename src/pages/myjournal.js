@@ -136,8 +136,8 @@ export default function MyJournal() {
                 </div>
             )) :
                 <div className="ml-10 mr-32 mt-4 p-4 border border-gray-300 rounded-md" >
-                    <h2 className="text-lg font-semibold">Your Journal Entry</h2>
-                    <p className="mt-2"> Will Look Something Like This </p>
+                    <h2 className="text-lg font-semibold">Your Journal Entry (Title) </h2>
+                    <p className="mt-2"> Will Look Something Like This (Entry) </p>
                 </div>}
             {showDropdown && (
                 <div className="fixed top-20 right-10 mx-4 my-4 bg-gray-300 rounded-md shadow-lg">
