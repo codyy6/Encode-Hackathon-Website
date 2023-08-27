@@ -10,6 +10,14 @@ export default function UserProfile() {
     const [address, setAddress] = useState("");
     const [balance, setBalance] = useState(0);
 
+    const [isCopied, setIsCopied] = useState(false);
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(address);
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
+    };
+
     //Get user ETH balance from Etherscan API
     async function fetchBalance(address) { 
         return fetch(`https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=U4KI4B9YBDRBS8QHF1WH2GE13TC248GJUU`) 
@@ -63,11 +71,19 @@ export default function UserProfile() {
                 <div className="flex flex-col space-y-2">
                 <div className="text-gray-700">
                     <p className="font-semibold">Ethereum Address:</p>
-                    <p>
-                         <a href={`https://etherscan.io/address/${address}`}>
-                            {address}
-                        </a>
-                    </p>
+                    <div className="flex items-center">
+                        <p>
+                            <a href={`https://etherscan.io/address/${address}`}>
+                                {address}
+                            </a>
+                        </p>
+                        <button className={`ml-2 py-1 px-2 rounded flex items-center ${isCopied ? 'bg-green-500' : 'bg-gray-300 hover:bg-gray-500'} text-black`} onClick={copyToClipboard}>
+                            {isCopied ? 'Copied!' : 'Copy'}
+                            <svg className="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
                 <div className="text-gray-700">
                     <p className="font-semibold">ENS:</p>
