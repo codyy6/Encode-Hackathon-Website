@@ -58,11 +58,23 @@ export default function UserProfile() {
                 </div>
                 <div className="text-gray-700">
                     <p className="font-semibold">Ethereum Address:</p>
-                    <p>{address}</p>
+                    <p>
+                         <a href={`https://etherscan.io/address/${address}`}>
+                            {address}
+                        </a>
+                    </p>
                 </div>
                 <div className="text-gray-700">
                     <p className="font-semibold">ENS:</p>
-                    <p>{ensName || "N/A"}</p>
+                    <p>
+                        {ensName ? (
+                            <a href={`https://etherscan.io/name-lookup-search?id=${ensName}`}>
+                                {ensName}
+                            </a>
+                        ) : (
+                            "N/A"
+                        )}
+                    </p>
                 </div>
                 <div className="text-gray-700">
                     <p className="font-semibold">Wallet Balance:</p>
