@@ -128,7 +128,7 @@ export default function MyJournal() {
                 </div>
             )}
 
-            {content != null ? content.map((item) => (
+            {content != null && content.length != 0 ? content.map((item) => (
                 <div className="ml-10 mr-32 mt-4 p-4 border border-gray-300 rounded-md" key={item.data.id}>
                     <h2 className="text-lg font-semibold">{item.data.title}</h2>
                     <p className="mt-2"> {item.data.content} </p>
@@ -136,8 +136,8 @@ export default function MyJournal() {
                 </div>
             )) :
                 <div className="ml-10 mr-32 mt-4 p-4 border border-gray-300 rounded-md" >
-                    <h2 className="text-lg font-semibold">Journal Title</h2>
-                    <p className="mt-2"> Journal Content </p>
+                    <h2 className="text-lg font-semibold">Your Journal Entry</h2>
+                    <p className="mt-2"> Will Look Something Like This </p>
                 </div>}
             {showDropdown && (
                 <div className="fixed top-20 right-10 mx-4 my-4 bg-gray-300 rounded-md shadow-lg">

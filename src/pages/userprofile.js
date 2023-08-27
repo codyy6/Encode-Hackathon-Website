@@ -8,6 +8,14 @@ export default function UserProfile() {
 
     const [ensName, setEnsName] = useState(""); // State to hold the ENS name
     const [address, setAddress] = useState("");
+    const [balance, setBalance] = useState(0);
+
+    //Get user ETH balance from Etherscan API
+    async function fetchBalance(address) { 
+        return fetch(`https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=U4KI4B9YBDRBS8QHF1WH2GE13TC248GJUU`) 
+                .then((res) => res.json()) 
+                .then((d) => setBalance(d)) 
+        }
 
     useEffect(() => {
         // Perform this effect when the component mounts
@@ -31,6 +39,7 @@ export default function UserProfile() {
 
         // Now that you have the address, you can call displayENSProfile
         displayENSProfile(address);
+        fetchBalance(address);
     }
 
     async function displayENSProfile(address) {
@@ -53,10 +62,6 @@ export default function UserProfile() {
             <div className="mt-4 p-6 bg-white border border-gray-300 rounded-md shadow-md w-2/5">
                 <div className="flex flex-col space-y-2">
                 <div className="text-gray-700">
-                    <p className="font-semibold">Name:</p>
-                    <p>Your Name</p>
-                </div>
-                <div className="text-gray-700">
                     <p className="font-semibold">Ethereum Address:</p>
                     <p>{address}</p>
                 </div>
@@ -66,7 +71,7 @@ export default function UserProfile() {
                 </div>
                 <div className="text-gray-700">
                     <p className="font-semibold">Wallet Balance:</p>
-                    <p>Your Wallet Balance</p>
+                    <p>{balance != 0 ? balance.result.substring(0,3)/10000 : 0} ETH</p>
                 </div>
                 </div>
             </div>
