@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Project Name
+Journify
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Description
+Journify is a revolutionary journaling platform that leverages decentralized identity and blockchain technology to provide you with a secure, private, and censorship-resistant journaling experience. Unlike traditional journaling apps, we empower you with complete control over your personal data and privacy.
 
-In the project directory, you can run:
+Using the power of Ethereum and the SIWE (Sign In With Ethereum) toolkit, Journify ensures that your journal entries are encrypted, timestamped, and stored securely on the blockchain. Say goodbye to worries about data breaches and unauthorized access. Your journal, your rules.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Features
+*Open Source: We believe in transparency. Journify's codebase is open source, inviting collaboration and security scrutiny from the community.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+*Decentralized Storage: Your journal entries are encrypted and stored on Polybase encrypted by your Ethereum wallet. Only you can access your journal entries.
 
-### `npm test`
+*SIWE Integration: Sign in to Journify with your Ethereum wallet. No need to remember passwords; your blockchain identity is your key.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+# Demo
+https://drive.google.com/file/d/1Xvm3mMBY6pxwyQ394QkROPWMK2IYtNts/view?usp=sharing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Getting Started
+## Clone/Download the repository
+ git clone https://github.com/codyy6/Encode-Hackathon-Website.git
+## Install dependencies
+ npm install
+## Navigate to backend folder
+ cd backend
+## Run the backend 
+ npm run 
+## Start the backend
+ npm start
+## Navigate to project folder & run the frontend
+ cd ..
+ npm run start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+# Technologies Used
+## Frontend
+* HTML
+* CSS
+* JavaScript
+* React JS
+* Tailwind CSS
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Backend
+* Node JS
+* Express JS
+* Polybase
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Ethereum
+* Spruce ID (SIWE toolkit)
+* Ethereum Name Service (ENS)
+* Etherscan API
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Contact Information
+Reach out to @codyy6, @haoxiang14 or @zzSleepyCoderzz for any questions or concerns.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
